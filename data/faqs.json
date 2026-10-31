@@ -1,0 +1,66 @@
+[
+  {
+    "question": "How many internship tasks must I complete?",
+    "aliases": [
+      "How many projects are required?",
+      "Can I submit only one task?"
+    ],
+    "answer": "CodeAlpha requires completing 2 or 3 of the 4 listed tasks. One task alone is insufficient."
+  },
+  {
+    "question": "Where should I upload my source code?",
+    "aliases": [
+      "Do I need GitHub?",
+      "What is the required repository name?","Where to upload project code?"
+    ],
+    "answer": "Upload your complete source code to GitHub in a repository named CodeAlpha_ProjectName."
+  },
+  {
+    "question": "How do I submit my completed projects?",
+    "aliases": [
+      "Where is the submission form?",
+      "How do I send my finished tasks?","Where to submit internship work?"
+    ],
+    "answer": "Submit through the official submission form shared in your CodeAlpha WhatsApp group."
+  },
+  {
+    "question": "What should I post on LinkedIn?",
+    "aliases": [
+      "Is a LinkedIn internship post required?",
+      "Should I tag CodeAlpha?"
+    ],
+    "answer": "Share your internship status on LinkedIn and tag @CodeAlpha."
+  },
+  {
+    "question": "Do I need to create a project video?",
+    "aliases": [
+      "Is a video explanation required?",
+      "Should I include the GitHub link in my video post?"
+    ],
+    "answer": "Post a video explaining your project on LinkedIn and include its GitHub repository link."
+  },
+  {
+    "question": "What are the FAQ chatbot task requirements?",
+    "aliases": [
+      "How do I build the FAQ chatbot?",
+      "What NLP techniques should the chatbot use?"
+    ],
+    "answer": "Collect FAQs, preprocess text using NLP, match questions using cosine similarity or intent matching, and return the best answer. A chat UI is optional."
+  },
+  {
+    "question": "What is required for the music generation task?",
+    "aliases": [
+      "Do I need to train an LSTM for music?",
+      "What should the AI music project produce?"
+    ],
+    "answer": "Collect MIDI data, preprocess note sequences, train a model such as LSTM or GAN, generate new music, and export it to MIDI or playable audio."
+  },
+  {
+    "question": "What is required for object detection and tracking?",
+    "aliases": [
+      "Do I need YOLO and object tracking?",
+      "Should detected objects have tracking IDs?"
+    ],
+    "answer": "Process webcam or video input, detect objects with a pretrained model, draw bounding boxes, and track objects with IDs in real time."
+  }
+]
