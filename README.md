@@ -1,87 +1,41 @@
-﻿# CodeAlpha FAQ Chatbot
+# Semantic FAQ Chatbot
 
-An AI-powered FAQ chatbot that retrieves relevant answers using
-pretrained semantic embeddings and cosine similarity.
+A CPU-based Python command-line chatbot that returns answers from a curated FAQ. It embeds the user's question, finds the closest known phrasing, and returns a fallback when the match score is too low.
 
-## Features
+Built for the CodeAlpha Artificial Intelligence Internship.
 
-- Semantic question matching
-- Pretrained BGE-small-en-v1.5 embedding model
-- FastEmbed with ONNX Runtime (CPU inference)
-- NLP tokenization using NLTK
-- Multiple question phrasings per FAQ
-- Fallback for questions with low similarity
-- Interactive command-line interface
-- Automated unit tests
+## How it works
 
-## Architecture
+1. Normalize and tokenize text with NLTK.
+2. Embed FAQ questions and aliases using `BAAI/bge-small-en-v1.5` through FastEmbed and ONNX Runtime.
+3. Compare the normalized question vector with the FAQ vectors using cosine similarity.
+4. Return the matching entry's stored answer when the score reaches the default threshold of `0.70`.
 
-User Question
-    |
-NLP Preprocessing
-    |
-Semantic Embedding (BGE-small)
-    |
-Cosine Similarity
-    |
-Best FAQ Selection
-    |
-Similarity Threshold
-    |
-Answer or Fallback
+## Setup and run
 
-## Tech Stack
+From the repository root, use a Python 3.12 virtual environment.
 
-- Python 3.12
-- FastEmbed
-- NumPy
-- NLTK
-- BAAI/bge-small-en-v1.5
+```bash
+python -m pip install -r requirements.txt
+python -m src.chatbot
+```
 
-## Installation
+The embedding model may download on first use. Ask a question about the CodeAlpha internship or AI tasks, then try an unrelated question to see the fallback. Type `exit` to close the chat.
 
-Create and activate a Python virtual environment.
+## Customize the FAQ
 
-Install dependencies:
+Edit [data/faqs.json](data/faqs.json) to add questions, alternate phrasings, and vetted answers. Restart the CLI to rebuild the in-memory representations. Review matches on known paraphrases and out-of-domain questions before changing the similarity threshold.
 
-    python -m pip install -r requirements.txt
+## Tests and scope
 
-The embedding model downloads automatically on first use.
+```bash
+python -m unittest discover -s tests -v
+```
 
-## Run
+The suite covers known questions, paraphrases, unsupported topics, and invalid input. The development run recorded four test methods covering 21 initial validation cases. The default similarity threshold is provisional and has not been calibrated on a large independent evaluation set.
 
-    python -m src.chatbot
-
-Type `exit` to quit.
-
-## Tests
-
-    python -m unittest discover -s tests -v
-
-Initial validation: 21 passing test cases across 4 test methods.
-
-Tests cover known questions, unknown questions, similar intents,
-and invalid inputs.
-
-## Dataset
-
-FAQ questions, aliases, and answers are stored in:
-
-    data/faqs.json
-
-The dataset covers CodeAlpha internship instructions and AI tasks.
-
-## Limitations
-
-- Answers are retrieved from the predefined FAQ dataset.
-- The chatbot does not generate new answers.
-- The similarity threshold (0.70) is provisional and not
-  calibrated on a large independent evaluation dataset.
-- Retrieval accuracy may decrease for unsupported topics
-  or substantially different question formulations.
-
-## Author
-
-GitHub: Tomm-2000
-
-CodeAlpha Artificial Intelligence Internship Project.
+| Path | Purpose |
+| --- | --- |
+| [src/chatbot.py](src/chatbot.py) | Preprocessing, embedding, similarity scoring, and CLI |
+| [data/faqs.json](data/faqs.json) | FAQ questions, aliases, and approved answers |
+| [tests/test_chatbot.py](tests/test_chatbot.py) | Matching and fallback tests |
